@@ -36,6 +36,8 @@ export default function App() {
         "https://menumorph.onrender.com/upload",
         formData
       );
+      console.log("Response:", response);
+      console.log("Response data:", response.data);
 
       const fullUrl =
         "https://menumorph.onrender.com" +
@@ -43,9 +45,21 @@ export default function App() {
 
       setWebsiteUrl(fullUrl);
     } catch (error) {
-      console.error(error);
-      alert("Failed to generate website.");
-    }
+        console.error("Axios Error:", error);
+
+        if (error.response) {
+          console.log("Status:", error.response.status);
+          console.log("Headers:", error.response.headers);
+          console.log("Data:", error.response.data);
+          alert(`Backend Error: ${error.response.status}`);
+        } else if (error.request) {
+          console.log("Request:", error.request);
+          alert("No response received from backend.");
+        } else {
+          console.log("Message:", error.message);
+          alert(error.message);
+        }
+      }
 
     setLoading(false);
   };
