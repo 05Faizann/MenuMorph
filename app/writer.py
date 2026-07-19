@@ -44,3 +44,5 @@ def save_website(
     )
 
     print(f"Website saved to: {output_folder.resolve()}")
+    
+    return folder_name

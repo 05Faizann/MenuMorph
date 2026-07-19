@@ -2,6 +2,7 @@ from fastapi import FastAPI, UploadFile, File
 from pathlib import Path
 import shutil
 from uuid import uuid4
+from fastapi.staticfiles import StaticFiles
 
 from app.ai.gemini import analyze_menu
 from app.ai.designer import design_website
@@ -15,6 +16,12 @@ app = FastAPI()
 
 UPLOAD_FOLDER = Path("uploads")
 UPLOAD_FOLDER.mkdir(exist_ok=True)
+
+app.mount(
+    "/generated",
+    StaticFiles(directory="generated_websites"),
+    name="generated",
+)
 
 
 @app.get("/")
@@ -49,13 +56,14 @@ async def upload_menu(file: UploadFile = File(...)):
     )
 
     # Save website files
-    save_website(
-    generated_website,
-    restaurant_knowledge.restaurant.name,
+    folder_name = save_website(
+        generated_website,
+        restaurant_knowledge.restaurant.name,
     )
 
     return {
         "message": "Website generated successfully!",
+        "website_url": f"/generated/{folder_name}/index.html",
         "restaurant": restaurant_knowledge,
         "blueprint": website_blueprint,
     }
