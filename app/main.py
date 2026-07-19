@@ -3,6 +3,7 @@ from pathlib import Path
 import shutil
 from uuid import uuid4
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.ai.gemini import analyze_menu
 from app.ai.designer import design_website
@@ -13,6 +14,14 @@ from app.prompts.prompts import MENU_JSON_PROMPT
 from app.models.schemas import RestaurantKnowledge
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 UPLOAD_FOLDER = Path("uploads")
 UPLOAD_FOLDER.mkdir(exist_ok=True)
