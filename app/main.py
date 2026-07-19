@@ -59,9 +59,14 @@ async def upload_menu(file: UploadFile = File(...)):
     )
 
     # Save website files
+    restaurant_name = (
+        restaurant_knowledge.restaurant.name
+        or "generated-restaurant"
+    )
+
     folder_name = save_website(
         generated_website,
-        restaurant_knowledge.restaurant.name,
+        restaurant_name,
     )
 
     return {
