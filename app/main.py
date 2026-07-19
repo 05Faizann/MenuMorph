@@ -22,7 +22,7 @@ GENERATED_FOLDER.mkdir(exist_ok=True)
 
 app.mount(
     "/generated",
-    StaticFiles(directory="GENERATED_FOLDER"),
+    StaticFiles(directory=GENERATED_FOLDER),
     name="generated",
 )
 
