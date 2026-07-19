@@ -3,13 +3,13 @@ from pathlib import Path
 import shutil
 from uuid import uuid4
 
-from app.gemini import analyze_menu
-from app.designer import design_website
-from app.generator import generate_website
+from app.ai.gemini import analyze_menu
+from app.ai.designer import design_website
+from app.ai.generator import generate_website
 from app.writer import save_website
 
-from app.prompts import MENU_JSON_PROMPT
-from app.schemas import RestaurantKnowledge
+from app.prompts.prompts import MENU_JSON_PROMPT
+from app.models.schemas import RestaurantKnowledge
 
 app = FastAPI()
 

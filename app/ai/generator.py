@@ -4,8 +4,8 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-from app.generated_website import GeneratedWebsite
-from app.prompts import WEBSITE_GENERATOR_PROMPT
+from app.models.generated_website import GeneratedWebsite
+from app.prompts.prompts import WEBSITE_GENERATOR_PROMPT
 
 load_dotenv()
 

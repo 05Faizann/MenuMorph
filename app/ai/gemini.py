@@ -5,7 +5,7 @@ from google import genai
 from google.genai import types
 from PIL import Image
 
-from app.schemas import RestaurantKnowledge
+from app.models.schemas import RestaurantKnowledge
 
 load_dotenv()
 

@@ -1,7 +1,7 @@
 from pathlib import Path
 import re
 
-from app.generated_website import GeneratedWebsite
+from app.models.generated_website import GeneratedWebsite
 
 
 def slugify(text: str) -> str:
