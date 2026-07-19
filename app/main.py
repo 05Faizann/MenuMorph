@@ -17,9 +17,12 @@ app = FastAPI()
 UPLOAD_FOLDER = Path("uploads")
 UPLOAD_FOLDER.mkdir(exist_ok=True)
 
+GENERATED_FOLDER = Path("generated_websites")
+GENERATED_FOLDER.mkdir(exist_ok=True)
+
 app.mount(
     "/generated",
-    StaticFiles(directory="generated_websites"),
+    StaticFiles(directory="GENERATED_FOLDER"),
     name="generated",
 )
 
